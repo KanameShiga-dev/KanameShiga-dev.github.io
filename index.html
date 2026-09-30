@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KanameShiga-dev Portfolio</title>
+<meta name="description" content="テレビやスマホで動く家族向けのアプリと、AI エージェントが安全に働く開発環境をつくる個人開発者のポートフォリオ">
+<style>
+:root{
+  --bg:#f5f4ef; --surface:#ffffff; --ink:#191c20; --sub:#565d68; --faint:#8a909a; --line:#e2e0d8;
+  --accent:#1f6f8b; --accent-soft:#e3f0f4; --tag:#eef0f2;
+  --audio:#1f7a8c; --sensor:#7a5bb0; --game:#b8592e;
+  --hero-a:#0f2a36; --hero-b:#1f6f8b; --hero-ink:#ffffff; --hero-sub:#cfe6ee;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111418; --surface:#181c21; --ink:#e7e9ec; --sub:#a4acb7; --faint:#6f7784; --line:#2a3038;
+    --accent:#6cc0d8; --accent-soft:#16282f; --tag:#232a31;
+    --audio:#5fc3d3; --sensor:#b39be6; --game:#ec9a72;
+    --hero-a:#0a1a21; --hero-b:#14485a; --hero-ink:#ffffff; --hero-sub:#b8d7e1;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111418; --surface:#181c21; --ink:#e7e9ec; --sub:#a4acb7; --faint:#6f7784; --line:#2a3038;
+  --accent:#6cc0d8; --accent-soft:#16282f; --tag:#232a31;
+  --audio:#5fc3d3; --sensor:#b39be6; --game:#ec9a72;
+  --hero-a:#0a1a21; --hero-b:#14485a; --hero-ink:#ffffff; --hero-sub:#b8d7e1;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Hiragino Sans","Yu Gothic UI","Meiryo",system-ui,sans-serif;font-size:15px;line-height:1.8}
+a{color:var(--accent)}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+.mono{font-family:ui-monospace,"Cascadia Mono",Consolas,monospace}
+
+/* hero */
+.hero{background:linear-gradient(135deg,var(--hero-a),var(--hero-b));color:var(--hero-ink);position:relative;overflow:hidden}
+.hero .wrap{padding-top:56px;padding-bottom:56px;position:relative;z-index:1}
+.hero svg.waves{position:absolute;right:-40px;bottom:-10px;width:520px;max-width:80%;opacity:.25}
+.eyebrow{font-size:12px;letter-spacing:.16em;color:var(--hero-sub)}
+.hero h1{font-size:clamp(28px,5vw,44px);line-height:1.3;margin:10px 0 14px}
+.hero p{max-width:640px;margin:0 0 20px;color:var(--hero-sub);font-size:16px}
+.hero .links{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-block;text-decoration:none;border-radius:999px;padding:8px 18px;font-size:14px;font-weight:600}
+.btn.primary{background:#fff;color:#0f2a36}
+.btn.ghost{border:1px solid #ffffff80;color:#fff}
+
+/* nav */
+nav.top{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line)}
+nav.top .wrap{display:flex;gap:4px;overflow-x:auto;padding-top:8px;padding-bottom:8px}
+nav.top a{flex:none;text-decoration:none;color:var(--sub);font-size:13px;padding:4px 12px;border-radius:999px}
+nav.top a:hover{background:var(--tag);color:var(--ink)}
+
+section{padding:48px 0 8px}
+h2{font-size:22px;margin:0 0 6px}
+.h2sub{color:var(--sub);margin:0 0 22px}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-top:28px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.stat b{display:block;font-size:26px;line-height:1.2}
+.stat span{font-size:13px;color:var(--sub)}
+
+/* tags */
+.tags{display:flex;flex-wrap:wrap;gap:8px 8px;margin-top:auto;padding-top:10px}
+.tag{display:inline-block;background:var(--tag);color:var(--ink);font-size:13px;line-height:1.5;
+  border:1px solid var(--line);border-radius:6px;padding:3px 10px;white-space:nowrap}
+code{font-family:ui-monospace,Consolas,monospace;font-size:.86em;background:var(--tag);padding:1px 5px;border-radius:4px}
+
+/* projects */
+.projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.proj h3{margin:0 0 4px;font-size:17px}
+.proj .meta{font-size:12px;color:var(--faint);margin-bottom:8px}
+.proj ul{margin:0 0 10px;padding-left:1.1em;font-size:14px;color:var(--sub)}
+.proj li{margin:3px 0}
+
+/* AI practice */
+.practice{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
+.panel h3{margin:0 0 10px;font-size:17px}
+.panel p{margin:6px 0;color:var(--sub);font-size:14px}
+.pipeline{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0}
+.pipeline span{background:var(--accent-soft);color:var(--ink);border-radius:8px;padding:4px 10px;font-size:13px}
+.pipeline i{color:var(--faint);font-style:normal}
+.formula{background:var(--tag);border-radius:10px;padding:12px 14px;font-size:13px;line-height:1.9}
+.growth{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px}
+.growth div{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px}
+.growth b{display:block;font-size:12px;color:var(--accent);letter-spacing:.08em}
+.growth span{font-size:14px}
+
+/* articles */
+.articles{display:grid;gap:14px;list-style:none;margin:0;padding:0}
+.article{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.article .meta{font-size:12px;color:var(--faint)}
+.article h3{margin:4px 0 8px;font-size:17px;line-height:1.5}
+.article h3 a{color:var(--ink);text-decoration:none}
+.article h3 a:hover{color:var(--accent);text-decoration:underline}
+.article p{margin:0 0 4px;color:var(--sub);font-size:14px}
+.article .tags{padding-top:8px}
+.more{margin:14px 0 0;font-size:14px}
+
+/* slides */
+.slide-groups{display:grid;gap:22px}
+.slide-group h3{margin:0 0 4px;font-size:16px}
+.slide-group .gsub{margin:0 0 10px;font-size:13px;color:var(--sub)}
+.slides{list-style:none;margin:0;padding:0;background:var(--surface);border:1px solid var(--line);border-radius:14px}
+.slide{padding:14px 18px;border-top:1px solid var(--line)}
+.slide:first-child{border-top:0}
+.slide .meta{font-size:12px;color:var(--faint)}
+.slide a.t{display:inline-block;margin:2px 0 4px;font-weight:700;color:var(--ink);text-decoration:none;line-height:1.5}
+.slide a.t:hover{color:var(--accent);text-decoration:underline}
+.slide p{margin:0;font-size:14px;color:var(--sub)}
+.slide .tags{padding-top:8px}
+
+/* community */
+.community-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.community{display:flex;flex-direction:column;align-items:flex-start}
+.community{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:14px;padding:18px 20px}
+.community .role{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:2px 10px}
+.community h3{margin:8px 0 6px;font-size:18px;line-height:1.5}
+.community p{margin:0;color:var(--sub);font-size:14px}
+.community h3 a{color:var(--ink);text-decoration:none}
+.community h3 a:hover{color:var(--accent);text-decoration:underline}
+.community .go{display:inline-block;margin-top:12px;font-size:14px;font-weight:600;text-decoration:none}
+
+/* certs */
+.cert-groups{display:grid;gap:16px}
+.cert-group h3{margin:0 0 10px;font-size:15px;color:var(--sub)}
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;list-style:none;margin:0;padding:0}
+.cert{background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--accent);border-radius:10px;padding:12px 14px}
+.cert b{display:block;font-size:15px;line-height:1.5}
+.cert span{display:block;font-size:12px;color:var(--faint);margin-top:2px}
+
+/* skills */
+.skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+.skill{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.skill h3{margin:0 0 8px;font-size:15px}
+.skill .tags{padding-top:0}
+
+/* principles */
+.principles{counter-reset:p;display:grid;gap:12px}
+.principle{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px 16px 56px;position:relative}
+.principle::before{counter-increment:p;content:counter(p,decimal-leading-zero);position:absolute;left:18px;top:16px;
+  font-family:ui-monospace,Consolas,monospace;color:var(--accent);font-weight:700}
+.principle b{display:block;margin-bottom:2px}
+.principle span{color:var(--sub);font-size:14px}
+
+footer{border-top:1px solid var(--line);margin-top:56px;padding:24px 0 40px;color:var(--faint);font-size:13px}
+
+@media (max-width:760px){
+  .practice{grid-template-columns:1fr}
+  .growth{grid-template-columns:1fr 1fr}
+  .hero .wrap{padding-top:40px;padding-bottom:40px}
+}
+@media (max-width:380px){ .works{grid-template-columns:1fr} }
+@media print{
+  nav.top{display:none}
+  .hero{print-color-adjust:exact;-webkit-print-color-adjust:exact}
+  .work,.proj,.panel{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <svg class="waves" viewBox="0 0 520 200" aria-hidden="true">
+    <g fill="none" stroke="#fff" stroke-width="2">
+      <path d="M0 100 Q 32 40 65 100 T 130 100 T 195 100 T 260 100 T 325 100 T 390 100 T 455 100 T 520 100"/>
+      <path d="M0 130 Q 32 90 65 130 T 130 130 T 195 130 T 260 130 T 325 130 T 390 130 T 455 130 T 520 130" opacity=".7"/>
+      <path d="M0 160 Q 32 140 65 160 T 130 160 T 195 160 T 260 160 T 325 160 T 390 160 T 455 160 T 520 160" opacity=".45"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="eyebrow mono">PORTFOLIO · 2026</div>
+    <h1>テレビやスマホで動く家族向けのアプリと、<br>AIが安全に働く開発環境をつくる</h1>
+    <p>テレビ（Android TV）やスマホで動く、家族向けのアプリやゲームを作っています。あわせて、Claude Code や Codex などの AI エージェントに、権限・手順・完了条件を与えて開発を任せる仕組みを設計しています。</p>
+    <div class="links">
+      <a class="btn primary" href="#ai">AI 開発を見る</a>
+      <a class="btn ghost" href="https://github.com/KanameShiga-dev" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn ghost" href="https://qiita.com/kanameShiga" target="_blank" rel="noopener">Qiita</a>
+      <a class="btn ghost" href="https://www.docswell.com/user/KanameShiga" target="_blank" rel="noopener">Docswell</a>
+    </div>
+  </div>
+</header>
+
+<nav class="top" aria-label="ページ内の移動">
+  <div class="wrap">
+    <a href="#ai">AI 開発の実践</a>
+    <a href="#projects">プロジェクト</a>
+    <a href="#articles">執筆記事</a>
+    <a href="#slides">技術資料</a>
+    <a href="#community">コミュニティ</a>
+    <a href="#certs">資格・認定</a>
+    <a href="#skills">技術スタック</a>
+    <a href="#principles">大切にしていること</a>
+  </div>
+</nav>
+
+<main class="wrap">
+
+  <div class="stats">
+    <div class="stat"><b>5件</b><span>家庭内や特定の端末で動かしているプロジェクト</span></div>
+    <div class="stat"><b>6件</b><span>Android TV 向けのアプリとゲーム</span></div>
+    <div class="stat"><b>2種類</b><span>併用している開発エージェント（Claude Code と Codex）</span></div>
+    <div class="stat"><b>9件</b><span>保有する資格・認定（AI 関連は 5 件）</span></div>
+  </div>
+
+  <!-- ===== AI PRACTICE ===== -->
+  <section id="ai">
+    <h2>AI 開発の実践</h2>
+    <p class="h2sub">AI に「作らせる」段階から、AI が仕事をできる環境と、それを管理する仕組みを作る段階へ進んできました。</p>
+
+    <div class="practice">
+      <div class="panel">
+        <h3>Harness：AI に働く環境を与える</h3>
+        <p>AI の性能に頼るのではなく、AI が行動できる範囲を設計します。</p>
+        <div class="formula mono">Harness = Goal + Context + Rules + Tools<br>&nbsp;&nbsp;+ Permissions + Workflow + Feedback + Verification</div>
+        <p>AI が「終わったと思ったら終わり」ではなく、完了の条件（Definition of Done）を満たしたら終わる形にしています。</p>
+        <div class="pipeline"><span>観察</span><i>→</i><span>実装</span><i>→</i><span>検証</span><i>→</i><span>修正</span><i>↺</i></div>
+      </div>
+
+      <div class="panel">
+        <h3>Decision Layer：すべてを LLM に考えさせない</h3>
+        <p>ルールや小さな判断モデルで済む処理は軽く扱い、必要なときだけ LLM を使います。応答の遅さ、トークン、コストを減らすための設計です。</p>
+        <div class="pipeline"><span>Policy</span><i>→</i><span>Risk Gate</span><i>→</i><span>Decision</span><i>→</i><span>Router</span><i>→</i><span>Worker</span><i>→</i><span>Test</span><i>→</i><span>Eval</span></div>
+        <p>RPA では、画面の状態の判断を AI に任せ、定型の操作は RPA に任せる形に分けて、画面の変更に強くしています。</p>
+      </div>
+
+      <div class="panel">
+        <h3>Claude Code と Codex の併用</h3>
+        <p>2 つのエージェントが同じ方針ファイル（<code>AGENTS.md</code>）を読み、引き継ぎは <code>HANDOFF.md</code> 1 本で行う運用を作りました。</p>
+        <p>個人設定は GitHub の private リポジトリで同期し、PC を移るときは再生成できないものだけを約 1MB にまとめて運びます。</p>
+      </div>
+
+      <div class="panel">
+        <h3>既存プロジェクトの Harness 化</h3>
+        <p>増えたプロジェクトを、読み取り専用の調査 → 分類 → 変換の順で管理下に入れます。</p>
+        <div class="pipeline"><span>読み取り調査</span><i>→</i><span>分類</span><i>→</i><span>AGENTS / GOAL / SCOPE / DoD / Tests</span></div>
+        <p>セキュリティ監査を AI に任せるときも、最初は変更権限を渡さず、読み取りだけで調べさせます。</p>
+      </div>
+    </div>
+
+    <div class="growth">
+      <div><b>6月</b><span>AI・LLM・エージェントを理解する</span></div>
+      <div><b>7月</b><span>仕事に合わせて AI を使い分ける</span></div>
+      <div><b>8月</b><span>AI を端末やシステムに組み込む</span></div>
+      <div><b>9月</b><span>AI の実行環境とルールを設計する</span></div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects">
+    <h2>プロジェクト</h2>
+    <p class="h2sub">家庭内や特定の端末で動かすため、公開していないものです。</p>
+    <div class="projects">
+      <article class="proj">
+        <h3>発語支援 AI ロボット「あいくん」</h3>
+        <div class="meta">Android TV ／ 2026年7月〜</div>
+        <ul>
+          <li>子どもとの音声対話で発語を支える AI です。語彙と応答を意図的に絞る設計にしています</li>
+          <li>LLM、音声認識、VOICEVOX による音声合成を組み合わせています</li>
+          <li>クラウドの AI が使えないときに備え、Ollama などのローカル LLM で縮退運転する構成も検討しました</li>
+        </ul>
+        <div class="tags"><span class="tag">Kotlin</span><span class="tag">LLM</span><span class="tag">VOICEVOX</span><span class="tag">ADB</span><span class="tag">音声 UI</span></div>
+      </article>
+
+      <article class="proj">
+        <h3>家族向けダッシュボード</h3>
+        <div class="meta">家庭内 LAN ／ 2026年7月〜</div>
+        <ul>
+          <li>予定ややることを、スマホから入力してテレビに表示する PWA です</li>
+          <li>家庭内 LAN で HTTPS を使うため、自前の認証局を立て、サーバー証明書を自動で更新しています</li>
+          <li>DB の migration、トランザクション単位での設置とロールバック、世代の管理まで作りました</li>
+        </ul>
+        <div class="tags"><span class="tag">Node.js</span><span class="tag">PWA</span><span class="tag">Service Worker</span><span class="tag">SQLite</span></div>
+      </article>
+
+      <article class="proj">
+        <h3>テレビ（BRAVIA）向けゲーム群</h3>
+        <div class="meta">Android TV ／ 2026年8月〜</div>
+        <ul>
+          <li>Unity 6 と URP で作った 3D ドライブゲーム（ARMv7 向けビルド、リモコン入力）</li>
+          <li>赤青メガネで立体に見えるシューティング（左右の目の間隔と色漏れの調整）</li>
+          <li>子ども向けの学習アプリ（Gradle でビルドとテストを自動化、実機でメモリを実測）</li>
+        </ul>
+        <div class="tags"><span class="tag">Unity 6</span><span class="tag">URP</span><span class="tag">Android TV</span><span class="tag">Gradle</span></div>
+      </article>
+
+      <article class="proj">
+        <h3>E資格 問題集アプリ</h3>
+        <div class="meta">Web ／ 2026年8月</div>
+        <ul>
+          <li>模試の採点画面で、前回の模試との比較を表示します</li>
+          <li>同じ問題を 2 回続けて間違えたら「弱点」として知らせます</li>
+        </ul>
+        <div class="tags"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">pnpm</span></div>
+      </article>
+
+      <article class="proj">
+        <h3>Excel で体験する言語モデル（教材）</h3>
+        <div class="meta">教材 ／ 2026年6月〜</div>
+        <ul>
+          <li>n-gram や Self-Attention の仕組みを、Excel のセル計算で目に見える形にした教材です</li>
+          <li>PowerShell や AutoHotkey による教材作成の自動化と、内容の品質監査も行いました</li>
+        </ul>
+        <div class="tags"><span class="tag">Excel</span><span class="tag">LLM の仕組み</span><span class="tag">PowerShell</span></div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== ARTICLES ===== -->
+  <section id="articles">
+    <h2>執筆記事</h2>
+    <p class="h2sub">プロジェクトで解いた課題と設計の考え方を、Qiita で公開しています。</p>
+    <ul class="articles">
+      <li class="article">
+        <div class="meta mono">2026.09.02 ・ Qiita</div>
+        <h3><a href="https://qiita.com/kanameShiga/items/5fb95477df913749bef0" target="_blank" rel="noopener">AIと相談しながら、2.1インチESLタグをBLE解析して画像表示まで動かした話</a></h3>
+        <p>仕様が公開されていない電子棚札（ESL）の BLE 通信を、AI と協働で解析しました。250×132 ドットの白黒画像を 18 分割で転送し、文字・線画・QR コードを表示できるようにして、家族向けダッシュボードと連携させています。現物の確認と重要な操作の承認は人が行う、という役割分担で安全に進めました。</p>
+        <div class="tags"><span class="tag">BLE</span><span class="tag">Python</span><span class="tag">IoT</span><span class="tag">AI との協働</span></div>
+      </li>
+      <li class="article">
+        <div class="meta mono">2026.07.20 ・ Qiita</div>
+        <h3><a href="https://qiita.com/kanameShiga/items/a6001096d83cb5241d9e" target="_blank" rel="noopener">ローカルLLMで作成した「発語支援AIロボットあいくん」をSony BRAVIA（Android TV）につないだ話</a></h3>
+        <p>「AI はサーバー側だけに置き、テレビは薄い画面にする」という分離設計で、発語支援 AI を型落ちの Android TV につなぎました。OS に証明書のインストール機能がない問題は、ローカルの認証局で解決しています。子ども向けのため、会話データはテレビに残さない設計にしました。</p>
+        <div class="tags"><span class="tag">Android TV</span><span class="tag">Kotlin</span><span class="tag">ローカル CA</span><span class="tag">プライバシー設計</span></div>
+      </li>
+      <li class="article">
+        <div class="meta mono">2026.07.17 ・ Qiita</div>
+        <h3><a href="https://qiita.com/kanameShiga/items/ed93b32fe53ba3a64ce4" target="_blank" rel="noopener">軽量ローカルLLMでも会話を止めない――発語支援AIロボット「あいくん」の「会話の呼吸」設計</a></h3>
+        <p>子どもの声をクラウドに送らず、音声認識・会話生成・音声合成をすべて PC 内で行う AI ロボットです。軽量モデルの応答を待つ間に短い相づちを並行して返し、待ち時間を自然な「会話の呼吸」に変えました。最速ではなく「失敗しても会話が壊れない」ことを目指した設計です。</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Ollama</span><span class="tag">VOICEVOX</span><span class="tag">ローカル LLM</span></div>
+      </li>
+    </ul>
+    <p class="more"><a href="https://qiita.com/kanameShiga" target="_blank" rel="noopener">Qiita のすべての記事を見る →</a></p>
+  </section>
+
+  <!-- ===== SLIDES ===== -->
+  <section id="slides">
+    <h2>技術資料（スライド）</h2>
+    <p class="h2sub">検証や設計の内容を、スライドにまとめて Docswell で公開しています。</p>
+    <div class="slide-groups">
+      <div class="slide-group">
+        <h3>ローカル LLM</h3>
+        <p class="gsub">導入から業務での採用判断まで、6 本のシリーズで整理しました。</p>
+        <ul class="slides">
+          <li class="slide">
+            <div class="meta mono">2026.06.08</div>
+            <a class="t" href="https://www.docswell.com/s/KanameShiga/KY8V1E-2026-06-08-170721/1" target="_blank" rel="noopener">ローカルLLM インストール手順</a>
+            <p>管理者権限を使わず、通常ユーザーの PowerShell で Ollama と 3 つのモデルを導入します。チャット用と検索用のモデルを役割で分けています。</p>
+            <div class="tags"><span class="tag">Ollama</span><span class="tag">PowerShell</span></div>
+          </li>
+          <li class="slide">
+            <div class="meta mono">2026.06.08</div>
+            <a class="t" href="https://www.docswell.com/s/KanameShiga/ZN79LV-2026-06-08-170842/1" target="_blank" rel="noopener">ローカルLLMを今日から使う</a>
+            <p>導入した環境で、1 つのコマンドから対話を始める手順です。チャットと文書検索の使い分けと、常駐アプリとしての運用をまとめました。</p>
+            <div class="tags"><span class="tag">Ollama</span><span class="tag">RAG</span></div>
+          </li>
+          <li class="slide">
+            <div class="meta mono">2026.06.08</div>
+            <a class="t" href="https://www.docswell.com/s/KanameShiga/K6NEGE-2026-06-08-170928/1" target="_blank" rel="noopener">ローカルLLM セキュアな学習方針</a>
+            <p>情報漏洩を避けるため、資料はモデル本体に覚え込ませず、RAG で参照させます。知識は後から削除できる形で持ち、モデルの変更は必要なときだけにします。</p>
+            <div class="tags"><span class="tag">RAG</span><span class="tag">情報漏洩対策</span><span class="tag">ファインチューニング</span></div>
+          </li>
+          <li class="slide">
+            <div class="meta mono">2026.06.09</div>
+            <a class="t" href="https://www.docswell.com/s/KanameShiga/KJWQXG-2026-06-09-154229/1" target="_blank" rel="noopener">ローカルLLM 実装・呼び出し方法</a>
+            <p>Ollama の API を、PowerShell・Python・Power Platform から用途別に呼び出す方法です。サンプルコードと業務での使いどころを載せています。</p>
+            <div class="tags"><span class="tag">Ollama API</span><span class="tag">Python</span><span class="tag">Power Platform</span></div>
+          </li>
+          <li class="slide">
+            <div class="meta mono">2026.06.16</div>
+            <a class="t" href="https://www.docswell.com/s/KanameShiga/59NM77-2026-06-16-205356/1" target="_blank" rel="noopener">ローカル資料RAGをつくってみた</a>
+            <p>手元の資料や OneDrive・SharePoint の同期フォルダを RAG 化する試作です。実務で使うのに必要な PC の性能も検討しました。</p>
+            <div class="tags"><span class="tag">RAG</span><span class="tag">ドキュメント検索</span><span class="tag">SharePoint</span></div>
+          </li>
+          <li class="slide">
+            <div class="meta mono">2026.06.18</div>
+            <a class="t" href="https://www.docswell.com/s/KanameShiga/5DMWX8-2026-06-18-152826/1" target="_blank" rel="noopener">ローカルLLMを採用／業務利用の可能性を検討する</a>
+            <p>Phi・Gemma・Mistral を中心に、試験導入の判断材料、コストの比較、やめる条件を整理しました。</p>
+            <div class="tags"><span class="tag">PoC</span><span class="tag">LLM の選定</span><span class="tag">コスト比較</span></div>
+          </li>
+        </ul>
+      </div>
+      <div class="slide-group">
+        <h3>業務の自動化</h3>
+        <p class="gsub">情報収集と運用保守の手間を、AI と自動化で減らす取り組みです。</p>
+        <ul class="slides">
+          <li class="slide">
+            <div class="meta mono">2026.06.14</div>
+            <a class="t" href="https://www.docswell.com/s/KanameShiga/ZJWQN1-2026-06-14-201449/1" target="_blank" rel="noopener">M365 / Copilot関連ニュースを毎朝ポッドキャスト化する自動化</a>
+            <p>Microsoft 365・Copilot・Power Platform・Azure AI の更新情報を、要約・音声・字幕付き動画に自動で変換します。収集と要約はローカル環境で完結させました。</p>
+            <div class="tags"><span class="tag">自動化</span><span class="tag">ローカル LLM</span><span class="tag">音声合成</span></div>
+          </li>
+          <li class="slide">
+            <div class="meta mono">2026.09.18</div>
+            <a class="t" href="https://www.docswell.com/s/KanameShiga/K6N8L4-2026-09-18-094801/1" target="_blank" rel="noopener">RPA運用保守：CopilotからJev一次判定へ</a>
+            <p>RPA の障害対応で、最初の切り分けを Copilot から判断モデルの Jev に移す方法を検討しました。作って終わりにせず、業務を磨き続けるための提案です。</p>
+            <div class="tags"><span class="tag">RPA</span><span class="tag">Copilot</span><span class="tag">Jev</span><span class="tag">Power Platform</span></div>
+          </li>
+        </ul>
+      </div>
+      <div class="slide-group">
+        <h3>発語支援 AI「あいくん」</h3>
+        <p class="gsub">発語に支援が必要な子どものための AI ロボットを、対象者別に紹介した資料です。</p>
+        <ul class="slides">
+          <li class="slide">
+            <div class="meta mono">2026.07.15</div>
+            <a class="t" href="https://www.docswell.com/s/KanameShiga/KE197D-2026-07-15-224601/1" target="_blank" rel="noopener">発語支援AIロボット「あいくん」― ことばを出すきっかけを、家庭のパソコンでやさしく増やす</a>
+            <p>名前を呼ぶと会話を始め、まねっこ・絵カード・読み聞かせなどを 1 つの顔画面から使えます。音声認識・LLM・音声合成は PC 内で動き、子どもの声を外部に送りません。</p>
+            <div class="tags"><span class="tag">ローカル LLM</span><span class="tag">音声 AI</span><span class="tag">アクセシビリティ</span></div>
+          </li>
+          <li class="slide">
+            <div class="meta mono">2026.07.15</div>
+            <a class="t" href="https://www.docswell.com/s/KanameShiga/KY8964-2026-07-15-225726/1" target="_blank" rel="noopener">「なんどでも、やさしく」発語支援AI「あいくん」― 保護者・先生・支援者向け紹介</a>
+            <p>大人の代わりではなく、生活の中で発話の機会を増やす道具として設計しました。声だけに頼らない伝え方と、同意を前提にした記録の扱いを紹介しています。</p>
+            <div class="tags"><span class="tag">コミュニケーション支援</span><span class="tag">発達支援</span><span class="tag">プライバシー</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <p class="more"><a href="https://www.docswell.com/user/KanameShiga" target="_blank" rel="noopener">Docswell のすべての資料を見る →</a></p>
+  </section>
+
+  <!-- ===== COMMUNITY ===== -->
+  <section id="community">
+    <h2>コミュニティ活動</h2>
+    <p class="h2sub">コミュニティの運営と登壇を通して、学んだことを共有し、Power Platform や Microsoft 365 を使う人どうしをつなぐ活動をしています。</p>
+    <div class="community-list">
+    <div class="community">
+      <span class="role">運営メンバー</span>
+      <h3><a href="https://jpaug-osaka.connpass.com/" target="_blank" rel="noopener">Japan Power Apps User Group 大阪</a></h3>
+      <p>現場の担当者が自分で課題を解決できるように、Power Apps を使って何ができるかを一緒に学ぶ、大阪のユーザーコミュニティです。勉強会を connpass で告知・開催しています。</p>
+      <div class="tags"><span class="tag">Power Apps</span><span class="tag">Power Platform</span><span class="tag">コミュニティ運営</span><span class="tag">勉強会</span></div>
+      <a class="go" href="https://jpaug-osaka.connpass.com/" target="_blank" rel="noopener">connpass のグループページを見る →</a>
+    </div>
+    <div class="community">
+      <span class="role">登壇</span>
+      <h3>Power Platform・Microsoft 365 系コミュニティでの登壇</h3>
+      <p>Power Platform や Microsoft 365 のコミュニティの勉強会で、学んだことや業務での活用について発表しています。発表資料は Docswell で公開しています。</p>
+      <div class="tags"><span class="tag">Power Platform</span><span class="tag">Microsoft 365</span><span class="tag">登壇</span></div>
+      <a class="go" href="https://www.docswell.com/user/KanameShiga" target="_blank" rel="noopener">Docswell の資料を見る →</a>
+    </div>
+    </div>
+  </section>
+
+  <!-- ===== CERTS ===== -->
+  <section id="certs">
+    <h2>資格・認定</h2>
+    <p class="h2sub">AI の仕組みと活用、業務アプリとデータ分析の分野で取得しています。</p>
+    <div class="cert-groups">
+      <div class="cert-group">
+        <h3>AI・生成AI</h3>
+        <ul class="certs">
+        <li class="cert"><b>G検定（JDLA Deep Learning for GENERAL）</b><span>一般社団法人日本ディープラーニング協会（JDLA）</span></li>
+        <li class="cert"><b>生成AIパスポート</b><span>一般社団法人生成AI活用普及協会（GUGA）</span></li>
+        <li class="cert"><b>AIエージェント・ストラテジスト</b><span>一般社団法人AICX協会</span></li>
+        <li class="cert"><b>Microsoft Certified: Azure AI Fundamentals</b><span>Microsoft</span></li>
+        <li class="cert"><b>Google AI Essentials</b><span>Google</span></li>
+        </ul>
+      </div>
+      <div class="cert-group">
+        <h3>業務アプリ・データ分析</h3>
+        <ul class="certs">
+        <li class="cert"><b>Microsoft Certified: Power Platform Fundamentals</b><span>Microsoft</span></li>
+        <li class="cert"><b>Microsoft Certified: Power Platform App Maker Associate</b><span>Microsoft</span></li>
+        <li class="cert"><b>Google Data Analytics</b><span>Google</span></li>
+        </ul>
+      </div>
+      <div class="cert-group">
+        <h3>その他</h3>
+        <ul class="certs">
+        <li class="cert"><b>二等無人航空機操縦士（ドローン）</b><span>国家資格（国土交通省）</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SKILLS ===== -->
+  <section id="skills">
+    <h2>技術スタック</h2>
+    <p class="h2sub">プロジェクトで実際に使ったものだけを載せています。</p>
+    <div class="skills">
+      <div class="skill"><h3>Web</h3><div class="tags"><span class="tag">HTML / CSS / JavaScript</span><span class="tag">PWA</span><span class="tag">Service Worker</span></div></div>
+      <div class="skill"><h3>アプリ・ゲーム</h3><div class="tags"><span class="tag">Kotlin</span><span class="tag">Android TV</span><span class="tag">Unity 6 / URP</span><span class="tag">C#</span><span class="tag">Gradle</span><span class="tag">ADB</span><span class="tag">BLE</span></div></div>
+      <div class="skill"><h3>サーバー・データ</h3><div class="tags"><span class="tag">Node.js</span><span class="tag">FastAPI</span><span class="tag">SQLite</span><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Python</span></div></div>
+      <div class="skill"><h3>AI</h3><div class="tags"><span class="tag">Claude Code</span><span class="tag">Codex</span><span class="tag">MCP</span><span class="tag">Ollama</span><span class="tag">VOICEVOX</span><span class="tag">RAG</span></div></div>
+      <div class="skill"><h3>自動化・運用</h3><div class="tags"><span class="tag">Playwright</span><span class="tag">PowerShell</span><span class="tag">Power Platform</span><span class="tag">RPA</span><span class="tag">Git</span><span class="tag">Windows のトラブル調査</span></div></div>
+    </div>
+  </section>
+
+  <!-- ===== PRINCIPLES ===== -->
+  <section id="principles">
+    <h2>大切にしていること</h2>
+    <p class="h2sub">どのプロジェクトでも、繰り返し使ってきた進め方です。</p>
+    <div class="principles">
+      <div class="principle"><b>確かめられる仮説は、実装より先に確かめる</b><span>実機での動きはメモリやログの実測で、データの版は稼働中のサーバーから読み取って確かめます。</span></div>
+      <div class="principle"><b>配っているものと直したものが同じかを確かめる</b><span>設置や更新のあとに、配られているファイルが修正後のものかをハッシュで照合します。確認していないことは「未確認」と書き分けます。</span></div>
+      <div class="principle"><b>戻し方を先に用意する</b><span>公開や設置の前に、影響と元に戻す手順を書き、承認を得てから実行します。</span></div>
+      <div class="principle"><b>処理の性質に合わせて役割を分ける</b><span>すべてを LLM に任せず、ルール、小さなモデル、RPA、人の確認を組み合わせます。</span></div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">KanameShiga-dev ／ 2026年6月〜9月の開発記録をもとに作成 ／ <a href="https://github.com/KanameShiga-dev" target="_blank" rel="noopener">github.com/KanameShiga-dev</a></div>
+</footer>
+
+</body>
+</html>
