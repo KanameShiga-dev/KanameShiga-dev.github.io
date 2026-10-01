@@ -76,6 +76,17 @@ code{font-family:ui-monospace,Consolas,monospace;font-size:.86em;background:var(
 .proj ul{margin:0 0 10px;padding-left:1.1em;font-size:14px;color:var(--sub)}
 .proj li{margin:3px 0}
 
+/* featured system */
+.featured{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--accent);border-radius:14px;padding:22px 22px 18px;margin-bottom:16px}
+.featured .label{display:inline-block;font-size:12px;font-weight:700;color:var(--accent);background:var(--accent-soft);border-radius:999px;padding:2px 10px}
+.featured h3{margin:8px 0 4px;font-size:20px;line-height:1.4}
+.featured .lead2{margin:0 0 12px;color:var(--sub);font-size:14px}
+.featured .cols{display:grid;grid-template-columns:1fr 1fr;gap:4px 24px;margin:0 0 6px;padding-left:1.1em;font-size:14px}
+.featured .cols li{margin:3px 0}
+.featured .note{margin:8px 0 0;font-size:13px;color:var(--faint)}
+.featured .go{display:inline-block;margin-top:12px;font-size:14px;font-weight:600;text-decoration:none}
+@media (max-width:760px){ .featured .cols{grid-template-columns:1fr} }
+
 /* AI practice */
 .practice{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .panel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:20px}
@@ -211,6 +222,23 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:24px 0 40px;colo
   <section id="ai">
     <h2>AI 開発の実践</h2>
     <p class="h2sub">AI に「作らせる」段階から、AI が仕事をできる環境と、それを管理する仕組みを作る段階へ進んできました。</p>
+
+    <article class="featured">
+      <span class="label">実装例 ／ ローカル開発運用基盤</span>
+      <h3><a href="https://kanameshiga-dev.github.io/sairai-manual/" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">采来 — サイクル —</a></h3>
+      <p class="lead2">Codex や Claude Code などの AI 開発ツールを統括し、作業の状態・引き継ぎ・検証結果・判断をブラウザで管理する仕組みです。AI やモデルが変わっても、作業を続けられる状態を残すことを目的にしています。</p>
+      <ul class="cols">
+        <li>開発の依頼を工程と担当に分け、作業ボードで停止理由や承認待ちを確認する</li>
+        <li>モデルの切り替えやセッションの交代を、引き継ぎの記録（Handoff）でつなぐ</li>
+        <li>プロジェクト台帳から Harness（作業範囲・制約・完了条件）を生成・補完する</li>
+        <li>Git の差分を使い、AI に渡すコンテキストを減らす運用</li>
+        <li>Ollama による判断の候補を、採用せずに記録して比べる（シャドー評価）</li>
+        <li>削除・公開・外部送信・権限変更は、人が確認してから行う</li>
+      </ul>
+      <div class="tags"><span class="tag">Codex</span><span class="tag">Claude Code</span><span class="tag">Harness</span><span class="tag">Ollama</span><span class="tag">Git</span><span class="tag">State / Evidence</span></div>
+      <p class="note">公開しているのは構成・操作マニュアルです。本体のコードは公開していません。</p>
+      <a class="go" href="https://kanameshiga-dev.github.io/sairai-manual/" target="_blank" rel="noopener">構成・操作マニュアルを見る →</a>
+    </article>
 
     <div class="practice">
       <div class="panel">
