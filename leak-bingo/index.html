@@ -132,7 +132,7 @@ footer a{color:var(--muted)}
 
   <footer>
     <span>出典：各項目のリンク先にある公表資料など。既存の9〜10月分は<a href="https://rocket-boys.co.jp/security-measures-lab/2026-sep-oct-japan-data-breach-exposure-scale/" target="_blank" rel="noopener">セキュリティ対策Labの集計</a>も参照。</span>
-    <span>最終更新：2026年10月16日。規模は単位や確度が異なり、全件流出を意味しません。漏えいが否定された事案と別種の事案は新しいカードから除外します。</span>
+    <span>最終更新：2026年10月16日。規模は単位や確度が異なり、全件流出を意味しません。続報で漏えいが確認されなかった事案と別種の事案は新しいカードから除外します。</span>
   </footer>
 </div>
 
@@ -148,7 +148,7 @@ const POOL=[
  {s:"ムラウチ.com",f:"ムラウチドットコム",d:"09/15",c:"7,716,811件",n:7716811,ok:1,st:"外部持出し確認",note:"ECサイトへの不正アクセス。",u:"https://murauchi.com/static-pages/privacy/pressrelease.html"},
  {s:"ローソン",f:"ローソンID／ローソンアプリ予約",d:"10/08",c:"2,155,345件",n:2155345,ok:1,st:"漏えい確認",note:"ローソンIDの会員情報。",u:RB+"lawson_id_2155000_data_breach/"},
  {s:"バイトル",f:"ディップ「バイトル」「バイトルNEXT」",d:"10/09",c:"最大3,885,771件",n:3885771,ok:1,st:"一部流出確認（上限は可能性）",note:"求人サービスへの不正アクセス。",u:RB+"dip_baitoru_baitoru_next_unauthorized_access_20261009/"},
- {s:"ビューカード",f:"ビューカード",d:"10/09",c:"約403万件",n:4030000,ok:0,st:"閲覧・取得の可能性",note:"IDCFクラウドへの不正アクセスが波及。メールアドレス等。",u:RB+"idcf-cloud-outage-affected-services-2026/"},
+ {s:"ビューカード",f:"ビューカード",d:"10/15",c:"旧対象約403万件",n:4030000,ok:0,cleared:1,st:"漏えいなしと判断（10/15更新）",note:"メール配信事業者から、会員メールアドレスの漏えいはなかったとの報告を受けた。",u:"https://www.jreast.co.jp/card/news/pdf/20261015.pdf"},
  {s:"JR東日本",f:"JR東日本（えきねっと・大人の休日倶楽部）",d:"10/15",c:"旧対象約206万件",n:2060000,ok:0,cleared:1,st:"漏えいなしと判断（10/15更新）",note:"メール配信事業者から、個人情報の漏えいはなかったとの報告を受けた。",u:"https://www.jreast.co.jp/press/2026/20261009_ho02.pdf"},
  {s:"JR九州",f:"JR九州",d:"10/15",c:"旧対象約130万件",n:1300000,ok:0,cleared:1,st:"漏えいの事実は確認されず（10/15続報）",note:"IDCフロンティアの調査結果に基づく。",u:"https://www.jrkyushu.co.jp/news/__icsFiles/afieldfile/2026/10/15/202691015_mail_address_access.pdf"},
  {s:"MrMax",f:"MrMaxアプリ・オンラインストア",d:"10/06",c:"最大1,735,154人",n:1735154,ok:1,st:"一部流出確認（最大は全会員数）",note:"アプリとECへの不正アクセス。",u:"https://www.mrmax.co.jp/info/incident_20261006/"},
@@ -185,7 +185,8 @@ const POOL=[
  {s:"GEX",f:"ジェックス",d:"08/19",c:"77,619件ほか",n:77619,ok:0,st:"閲覧可能、外部流出は未確認",note:"氏名・連絡先を含む77,619件のほか、氏名のみ1,360件。",u:"https://www.gex-fp.co.jp/news/20260819/"},
  {s:"コロナ",f:"コロナ（施工情報クラウド）",d:"08/28",c:"最大35,000名",n:35000,ok:0,st:"漏えいの可能性",note:"顧客の氏名・住所や施工関連資料が対象。",u:"https://www.corona.co.jp/news/other/post-439.html"},
  {s:"ソースネクスト",f:"ソースネクスト",d:"10/15",c:"対象22,519,960件",n:22519960,ok:1,st:"会員情報の外部流出を確認",note:"対象件数は流出可能性の範囲で、全項目が全員分流出した意味ではない。",u:"https://www.sourcenext.com/support/i/2026/1015_info/"},
- {s:"ファンケル",f:"ファンケル・アテニア",d:"10/16",c:"計834,947件",n:834947,ok:1,st:"会員情報の漏えい確認",note:"ファンケル393,785件、アテニア441,162件の合計。人数ではない。",u:"https://www.fancl.jp/news/pdf/husei.pdf"}
+ {s:"ファンケル",f:"ファンケル・アテニア",d:"10/16",c:"計834,947件",n:834947,ok:1,st:"会員情報の漏えい確認",note:"ファンケル393,785件、アテニア441,162件の合計。人数ではない。",u:"https://www.fancl.jp/news/pdf/husei.pdf"},
+ {s:"バーガーキング",f:"バーガーキング公式アプリ（ビーケー・ジャパン）",d:"10/15",c:"約1,118万件",n:11180000,ok:1,st:"アプリ会員情報の漏えい確認",note:"会員ID・連絡先等が対象。カード番号は漏えいせず、ログインパスワードの漏えいは公表時点で未確認。",u:"https://www.burgerking.co.jp/images/notice/2026/10/15/d4d114ca-ebd7-4f3d-94ef-c4ea7a84a139.pdf"}
 ];
 const FREE={free:true};
 const KEY="leak-bingo-v1";
