@@ -1,0 +1,252 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>情報漏洩ビンゴ 2026秋</title>
+<meta name="description" content="2026年9〜10月に国内で公表された情報漏洩39件から24社を引く、タップで判を押せるビンゴカード。">
+<meta property="og:title" content="情報漏洩ビンゴ 2026秋">
+<meta property="og:description" content="使ったことのあるサービスに印を。揃ったら、パスワードと登録カードを見直す合図。">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#EDF0F3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#10151C" media="(prefers-color-scheme: dark)">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0;font-size:14px;-webkit-text-size-adjust:100%}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&family=IBM+Plex+Sans+JP:wght@400;500;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: one narrow column — notice-style header, 5×5 card with hanko stamps, detail slip, full ledger below */
+:root{
+  --paper:#EDF0F3; --card:#F9FAFB; --ink:#18202C; --muted:#5B6575; --rule:#C9D0D9;
+  --seal:#C43A2F; --seal-soft:rgba(196,58,47,.09); --line:#2F5D8A; --line-soft:rgba(47,93,138,.12);
+  --f-display:"Dela Gothic One","Hiragino Sans","Yu Gothic",sans-serif;
+  --f-body:"IBM Plex Sans JP","Hiragino Sans","Yu Gothic",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#10151C; --card:#18202A; --ink:#E4E9F0; --muted:#94A0B2; --rule:#2C3644;
+  --seal:#E2604F; --seal-soft:rgba(226,96,79,.13); --line:#7FA8D6; --line-soft:rgba(127,168,214,.14); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#10151C; --card:#18202A; --ink:#E4E9F0; --muted:#94A0B2; --rule:#2C3644;
+  --seal:#E2604F; --seal-soft:rgba(226,96,79,.13); --line:#7FA8D6; --line-soft:rgba(127,168,214,.14); color-scheme:dark}
+
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);line-height:1.6}
+.wrap{max-width:540px;margin:0 auto;padding-block:28px 40px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:20px}
+
+header{display:flex;flex-direction:column;gap:6px}
+.eyebrow{font-size:11px;letter-spacing:.12em;color:var(--muted);font-family:var(--f-mono)}
+h1{font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1.2;margin:0;text-wrap:balance}
+h1 small{font-size:15px;color:var(--seal);margin-left:6px}
+.lead{margin:0;color:var(--muted);font-size:13px;max-width:60ch}
+
+.card{background:var(--card);border:1px solid var(--rule);border-radius:6px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.cols,.grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.cols span{text-align:center;font-family:var(--f-display);font-size:20px;color:var(--seal);letter-spacing:.04em}
+.cell{position:relative;aspect-ratio:1/1;max-width:100%;border:1px solid var(--rule);border-radius:3px;background:var(--card);
+  color:var(--ink);font-family:var(--f-body);padding:4px 3px 6px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;overflow:hidden;text-align:center}
+.cell:hover{border-color:var(--muted)}
+.cell:focus-visible{outline:2px solid var(--line);outline-offset:1px}
+.cell .nm{font-size:11px;font-weight:700;line-height:1.25;word-break:break-word}
+.cell .ct{font-family:var(--f-mono);font-size:9px;color:var(--muted);line-height:1.2}
+.cell .bar{position:absolute;left:0;bottom:0;height:3px;background:var(--seal);opacity:.55}
+.cell.sel{border-color:var(--ink)}
+.cell.inline{background:var(--line-soft);border-color:var(--line)}
+.cell.free{background:var(--seal-soft)}
+.cell.free .nm{font-family:var(--f-display);font-weight:400;font-size:11px;color:var(--seal)}
+.stamp{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.stamp i{width:76%;aspect-ratio:1/1;border:2.5px solid var(--seal);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-style:normal;font-family:var(--f-display);
+  color:var(--seal);font-size:clamp(18px,5.5vw,28px);transform:rotate(-14deg);opacity:.78;
+  animation:press .22s ease-out}
+@keyframes press{from{transform:rotate(-14deg) scale(1.5);opacity:0}to{transform:rotate(-14deg) scale(1);opacity:.78}}
+@media (prefers-reduced-motion:reduce){.stamp i{animation:none}}
+
+.status{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;font-size:13px}
+.status .score{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
+.status .bingo{font-family:var(--f-display);color:var(--seal);font-size:16px}
+.status .sp{flex:1}
+button.act{font-family:var(--f-body);font-size:12px;padding:6px 12px;border-radius:999px;border:1px solid var(--rule);
+  background:var(--card);color:var(--ink);cursor:pointer}
+button.act:hover{border-color:var(--ink)}
+button.act:focus-visible{outline:2px solid var(--line);outline-offset:2px}
+
+.slip{border-top:2px solid var(--ink);padding-top:10px;display:flex;flex-direction:column;gap:4px;min-height:96px}
+.slip .meta{font-family:var(--f-mono);font-size:11px;color:var(--muted)}
+.slip h2{margin:0;font-size:17px;line-height:1.35}
+.slip p{margin:0;font-size:13px}
+.slip a{color:var(--line);font-size:12px}
+.pill{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;border:1px solid currentColor;margin-left:6px;vertical-align:2px}
+.pill.ok{color:var(--seal)} .pill.maybe{color:var(--muted)}
+
+details{border-top:1px solid var(--rule);padding-top:10px}
+summary{cursor:pointer;font-weight:700;font-size:14px}
+.ledger{overflow-x:auto;margin-top:10px}
+table{border-collapse:collapse;width:100%;font-size:12px}
+th,td{text-align:left;padding:6px 6px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:11px;color:var(--muted);font-weight:500;letter-spacing:.06em}
+td.n{font-family:var(--f-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+td a{color:var(--ink)}
+footer{font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">PUBLISHED 2026.09.01 — 10.09 / 国内公表分</div>
+    <h1>情報漏洩ビンゴ<small>2026秋</small></h1>
+    <p class="lead">使ったことのあるサービスに印を。揃ったら、パスワードと登録カードを見直す合図です。件数は各社公表の上限値で、「漏えいのおそれ」を含みます。</p>
+  </header>
+
+  <section class="card" aria-label="ビンゴカード">
+    <div class="cols" aria-hidden="true"><span>L</span><span>E</span><span>A</span><span>K</span><span>S</span></div>
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <div class="status">
+    <span class="score" id="score">印 0/24</span>
+    <span class="bingo" id="bingo"></span>
+    <span class="sp"></span>
+    <button class="act" id="reset" type="button">印を消す</button>
+    <button class="act" id="deal" type="button">新しいカード</button>
+  </div>
+
+  <section class="slip" id="slip" aria-live="polite">
+    <div class="meta">マスを押すと、印と概要がここに出ます</div>
+  </section>
+
+  <details>
+    <summary id="ledgerTitle">収録リスト</summary>
+    <div class="ledger"><table>
+      <thead><tr><th>公表</th><th>組織</th><th>規模</th><th>状況</th></tr></thead>
+      <tbody id="ledger"></tbody>
+    </table></div>
+  </details>
+
+  <footer>
+    <span>集計出典：<a href="https://rocket-boys.co.jp/security-measures-lab/2026-sep-oct-japan-data-breach-exposure-scale/" target="_blank" rel="noopener">セキュリティ対策Lab（2026年9〜10月 国内案件集計）</a>ほか各社公表資料。</span>
+    <span>規模は公表値の上限。漏えい確定とおそれが混在し、全件流出を意味しません。</span>
+  </footer>
+</div>
+
+<script>
+const RB="https://rocket-boys.co.jp/security-measures-lab/";
+const POOL=[
+ {s:"skyticket",f:"skyticket",d:"10/09",c:"約1,464万件",n:14640000,ok:0,st:"取得・閲覧・可能性が混在",note:"管理機能・業務管理・バス予約の3事案。ハッシュ化パスワードも対象。",u:RB+"skyticket_three_unauthorized_access_incidents_1464m/"},
+ {s:"焼肉きんぐ",f:"焼肉きんぐ公式アプリ（物語コーポレーション）",d:"10/05",c:"10,788,963件",n:10788963,ok:1,st:"漏えい確認",note:"公式アプリへの不正アクセス。",u:"https://www.monogatari.co.jp/news/261005_news/"},
+ {s:"第一興商",f:"第一興商／日本コロムビアグループ",d:"10/08",c:"約872万件",n:8724000,ok:0,st:"おそれ（外部流出は未確認）",note:"委託先従業員の端末がマルウェアに感染。",u:"https://big-echo.jp/info20261008/"},
+ {s:"タイムズカー",f:"タイムズカー",d:"09/28",c:"約660万アカウント",n:6600000,ok:1,st:"第三者取得確認",note:"免許証の特例再交付に至った県も。集団訴訟の準備サイトも開設。",u:"https://www.timesmobi.co.jp/news/2026/09/33b24fb783a2d303b7e8664249ab57022cda975d.html"},
+ {s:"ブックオフ",f:"ブックオフグループ",d:"10/09",c:"最大約643万",n:6430000,ok:1,st:"外部取得確認（最大数は影響上限）",note:"会員番号単位の最大対象規模。",u:RB+"bookoff_customer_data_breach_20261009/"},
+ {s:"EPARK",f:"EPARKリラク＆エステ「PeakManager」",d:"09/24",c:"約2,218万レコード",n:22180000,ok:1,st:"外部転送確認",note:"期間中の最大規模。",u:"https://www.epark-relax.co.jp/news/231"},
+ {s:"ムラウチ.com",f:"ムラウチドットコム",d:"09/15",c:"7,716,811件",n:7716811,ok:1,st:"外部持出し確認",note:"ECサイトへの不正アクセス。",u:"https://murauchi.com/static-pages/privacy/pressrelease.html"},
+ {s:"ローソン",f:"ローソンID／ローソンアプリ予約",d:"10/08",c:"2,155,345件",n:2155345,ok:1,st:"漏えい確認",note:"ローソンIDの会員情報。",u:RB+"lawson_id_2155000_data_breach/"},
+ {s:"バイトル",f:"ディップ「バイトル」「バイトルNEXT」",d:"10/09",c:"最大3,885,771件",n:3885771,ok:1,st:"一部流出確認（上限は可能性）",note:"求人サービスへの不正アクセス。",u:RB+"dip_baitoru_baitoru_next_unauthorized_access_20261009/"},
+ {s:"ビューカード",f:"ビューカード",d:"10/09",c:"約403万件",n:4030000,ok:0,st:"閲覧・取得の可能性",note:"IDCFクラウドへの不正アクセスが波及。メールアドレス等。",u:RB+"idcf-cloud-outage-affected-services-2026/"},
+ {s:"JR東日本",f:"JR東日本（えきねっと・大人の休日倶楽部）",d:"10/09",c:"約206万件",n:2060000,ok:0,st:"閲覧・取得の可能性",note:"IDCFクラウド経由。",u:RB+"idcf-cloud-outage-affected-services-2026/"},
+ {s:"JR九州",f:"JR九州",d:"10/09",c:"最大約130万件",n:1300000,ok:0,st:"閲覧・取得の可能性",note:"IDCFクラウド経由。",u:RB+"idcf-cloud-outage-affected-services-2026/"},
+ {s:"MrMax",f:"MrMaxアプリ・オンラインストア",d:"10/06",c:"最大1,735,154人",n:1735154,ok:1,st:"一部流出確認（最大は全会員数）",note:"アプリとECへの不正アクセス。",u:"https://www.mrmax.co.jp/info/incident_20261006/"},
+ {s:"手間いらず",f:"手間いらず「TEMAIRAZU」",d:"09/28",c:"最大約445万人",n:4450000,ok:0,st:"閲覧・取得の可能性",note:"ホテル予約管理。149の企業・施設に影響。",u:RB+"temairazu-incident-affected-hotels-list/"},
+ {s:"さくらインターネット",f:"さくらインターネット（販売管理システム）",d:"09/10",c:"最大約136万アカウント",n:1360563,ok:0,st:"閲覧・取得の可能性",note:"調査第三報で規模を公表。",u:"https://www.sakura.ad.jp/corporate/information/newsreleases/2026/09/10/1968225692/"},
+ {s:"REXT",f:"REXT Holdings／REXT",d:"10/09",c:"1,044,906件",n:1044906,ok:0,st:"漏えいのおそれ",note:"RIZAPグループ傘下。",u:"https://www.rizapgroup.com/news/detail?topics_id=1567"},
+ {s:"ホワイトエッセンス",f:"ホワイトエッセンス",d:"10/05",c:"約105万アカウント",n:1050000,ok:1,st:"持ち出し確認",note:"続報で規模を公表。",u:"https://www.whiteessence.com/news/news/20261005/"},
+ {s:"infoQ",f:"infoQ（GMOリサーチ&AI）",d:"10/05",c:"最大948,498件",n:948498,ok:1,st:"外部取得確認（上限は全会員）",note:"アンケートサイトの会員情報。",u:RB+"infoq-gmo-research-data-breach-948498-20261005/"},
+ {s:"大和証券",f:"大和証券",d:"10/05",c:"約11万人",n:110000,ok:0,st:"漏えいの可能性",note:"問い合わせ管理の委託先スカラコミュニケーションズが不正アクセス被害。口座番号等。",u:RB+"scala-communications-i-ask-cyberattack-summary/"},
+ {s:"大起水産",f:"大起水産公式アプリ",d:"10/05",c:"最大174,933人",n:174933,ok:0,st:"漏えいのおそれ",note:"公式アプリのシステムへの不正アクセス。",u:"https://www.daiki-suisan.co.jp/files/optionallink/00000164_file.pdf"},
+ {s:"セイコーマート",f:"セイコーマートアプリ",d:"09/29",c:"574,647人",n:574647,ok:1,st:"不正閲覧確認",note:"アプリ会員情報。",u:RB+"seicomart-app-unauthorized-access-570k-accounts-2026/"},
+ {s:"東京メトロ",f:"東京メトロ「メトポ」",d:"09/27",c:"約59,000件",n:59000,ok:0,st:"漏えいの可能性",note:"ポイントサービスの会員情報。",u:"https://www.metpo.jp/news/Gn52e-Vm"},
+ {s:"OZmall",f:"OZmall（スターツ出版）",d:"09/27",c:"最大442,779名",n:442779,ok:0,st:"閲覧の可能性",note:"予約サイトの会員情報。",u:"https://starts-pub.jp/info20261001"},
+ {s:"NewsPicks",f:"NewsPicks（ユーザベース）",d:"10/09",c:"カード情報の一部36.2万件",n:362000,ok:0,st:"漏えいのおそれ（第2報）",note:"管理ツールへの不正アクセス。",u:RB+"newspicks_uzabase_admin_tool_unauthorized_access-2/"},
+ {s:"OfferBox",f:"OfferBox（i-plug）",d:"10/05",c:"理論上最大314,009人",n:314009,ok:0,st:"閲覧可能な状態だった",note:"設定不備で、開発者ツールから学生情報を閲覧できた。",u:"https://i-plug.co.jp/news/11334/"},
+ {s:"第一生命",f:"第一ライフグループ・第一生命",d:"10/02",c:"約12万人",n:120000,ok:0,st:"漏えいの可能性",note:"従業員情報。",u:RB+"daiichi-life-employee-data-breach-120k-20261002/"},
+ {s:"旭化成セラピューティクス",f:"旭化成セラピューティクス「Pharma DIGITAL」",d:"10/06",c:"約51.4万名",n:514700,ok:0,st:"閲覧・取得の可能性",note:"医療関係者向け情報サイト。社員約700名分も。",u:"https://www.asahi-kasei.co.jp/pharma/oshirase_20261006.html"},
+ {s:"デジタル庁",f:"デジタル庁（政府ネットワーク GSS）",d:"09/11",c:"約24.6万件",n:246000,ok:0,st:"漏えいの可能性",note:"保守運用担当者のアカウントを使った侵入が5月下旬から続いていた。",u:"https://www.digital.go.jp/news/2026-0911-01"},
+ {s:"LEAN BODY",f:"LEAN BODY",d:"09/15",c:"約44万アカウント",n:440000,ok:1,st:"第三者取得確認",note:"BIツールMetabase経由。",u:RB+"lean-body-metabase-system-report/"},
+ {s:"ココナラ",f:"ココナラスキルマーケット",d:"10/09",c:"履歴書等 約2,300件",n:2294,ok:1,st:"外部への漏えい確認",note:"履歴書449件、職務経歴書関連1,845件。",u:"https://www.coconala.co.jp/news-20261009/"},
+ {s:"郵便局アプリ",f:"日本郵便「郵便局アプリ」",d:"09/29",c:"69件",n:69,ok:1,st:"不正アクセス確認",note:"件数は少数。",u:"https://www.japanpost.jp/news/pressrelease/20260929_01/"},
+ {s:"集英社",f:"集英社「HAPPY PLUS COMMUNITY」",d:"09/28",c:"2,835名",n:2835,ok:1,st:"漏えい確認",note:"読者コミュニティの会員情報。",u:RB+"shueisha-happy-plus-community-data-breach/"},
+ {s:"ニチレイ",f:"ニチレイ",d:"09/18",c:"53,866件",n:53866,ok:1,st:"漏えい確認",note:"",u:"https://www.nichirei.co.jp/news/2026/524.html"},
+ {s:"@cosme",f:"アイスタイル「@cosme」",d:"09/16",c:"10,997件",n:10997,ok:1,st:"外部公開設定ミス",note:"攻撃ではなく設定の誤り。",u:"https://www.istyle.co.jp/news/info/2026/09/20260916-3.html"},
+ {s:"イープラス",f:"イープラス",d:"09/29",c:"1,463件",n:1463,ok:1,st:"漏えい確認",note:"",u:"https://corp.eplus.jp/press-release/1824/"},
+ {s:"レゴランド",f:"レゴランド・ジャパン・ホテル",d:"09/25",c:"1,557予約",n:1557,ok:1,st:"予約者情報に不正アクセス",note:"",u:"https://www.legoland.jp/operation/news/news-release/news20260925/"},
+ {s:"リゾートトラスト",f:"リゾートトラスト／ザ・カハラ横浜",d:"10/09",c:"約6.2万件",n:62000,ok:1,st:"漏えい確認",note:"",u:RB+"resorttrust-personal-information-leak-unauthorized-access/"},
+ {s:"三井不動産",f:"三井不動産",d:"09/01",c:"約5.5万件",n:55000,ok:0,st:"漏えいの可能性",note:"",u:RB+"mitsui-fudosan-19000-36000-leak/"},
+ {s:"ドコモ",f:"NTTドコモ（Amazonへの情報提供）",d:"09/16",c:"344,213回線",n:344213,ok:1,st:"同意なき第三者提供",note:"侵入ではなく、同意を得ずに提供した事案。",u:"https://www.itmedia.co.jp/news/article/2609/16/2000001538/"}
+];
+const FREE={free:true};
+const KEY="leak-bingo-v1";
+let state={card:[],marks:[],sel:-1};
+
+function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+function deal(seed){
+  const r=rng(seed), idx=POOL.map((_,i)=>i);
+  for(let i=idx.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]]}
+  const c=idx.slice(0,24); c.splice(12,0,-1); return c;
+}
+function save(){try{localStorage.setItem(KEY,JSON.stringify({card:state.card,marks:state.marks}))}catch(e){}}
+function load(){
+  try{const v=JSON.parse(localStorage.getItem(KEY)||"null");
+    if(v&&Array.isArray(v.card)&&v.card.length===25&&v.card.every(i=>i===-1||POOL[i])){state.card=v.card;state.marks=v.marks||[];return}}catch(e){}
+  state.card=deal(20261016);state.marks=[];
+}
+const LINES=[];
+for(let i=0;i<5;i++){LINES.push([0,1,2,3,4].map(k=>i*5+k));LINES.push([0,1,2,3,4].map(k=>k*5+i))}
+LINES.push([0,6,12,18,24],[4,8,12,16,20]);
+const marked=p=>p===12||state.marks.includes(p);
+const maxLog=Math.log10(22180000);
+
+function render(){
+  const g=document.getElementById("grid"); g.innerHTML="";
+  const done=LINES.filter(l=>l.every(marked));
+  const inLine=new Set(done.flat());
+  state.card.forEach((id,p)=>{
+    const b=document.createElement("button"); b.type="button"; b.id="cell"+p; b.className="cell";
+    if(id===-1){b.classList.add("free");b.innerHTML='<span class="nm">お詫びと<br>お知らせ</span>';b.setAttribute("aria-label","フリー：お詫びとお知らせ")}
+    else{const x=POOL[id];
+      b.innerHTML=`<span class="nm">${x.s}</span><span class="ct">${x.c.replace(/^(約|最大|理論上最大)/,"")}</span><span class="bar" style="width:${Math.max(6,Math.log10(Math.max(x.n,10))/maxLog*100).toFixed(0)}%"></span>`;
+      b.setAttribute("aria-label",`${x.f}、${x.c}${marked(p)?"、印あり":""}`)}
+    if(marked(p)) b.insertAdjacentHTML("beforeend",'<span class="stamp"><i>漏</i></span>');
+    if(inLine.has(p)) b.classList.add("inline");
+    if(p===state.sel) b.classList.add("sel");
+    b.addEventListener("click",()=>tap(p));
+    g.appendChild(b);
+  });
+  document.getElementById("score").textContent=`印 ${state.marks.length}/24`;
+  document.getElementById("bingo").textContent=done.length?`BINGO ×${done.length}`:"";
+  slip();
+}
+function slip(){
+  const el=document.getElementById("slip"), p=state.sel;
+  if(p<0){el.innerHTML='<div class="meta">マスを押すと、印と概要がここに出ます</div>';return}
+  const id=state.card[p];
+  if(id===-1){el.innerHTML='<div class="meta">FREE</div><h2>お詫びとお知らせ</h2><p>漏えい公表文のお決まりの題名。最初から印が付いています。</p>';return}
+  const x=POOL[id];
+  el.innerHTML=`<div class="meta">2026/${x.d} 公表 ・ ${x.c}</div>
+    <h2>${x.f}<span class="pill ${x.ok?"ok":"maybe"}">${x.ok?"確認":"おそれ"}</span></h2>
+    <p>${x.st}${x.note?"。"+x.note:""}</p>
+    <a href="${x.u}" target="_blank" rel="noopener">公表・解説を開く</a>`;
+}
+function tap(p){
+  state.sel=p;
+  if(p!==12){const i=state.marks.indexOf(p); i<0?state.marks.push(p):state.marks.splice(i,1)}
+  save(); render(); document.getElementById("cell"+p).focus();
+}
+document.getElementById("deal").addEventListener("click",()=>{state.card=deal(Date.now());state.marks=[];state.sel=-1;save();render()});
+document.getElementById("reset").addEventListener("click",()=>{state.marks=[];state.sel=-1;save();render()});
+
+(function ledger(){
+  document.getElementById("ledgerTitle").textContent=`収録リスト（${POOL.length}件・カードは毎回24件を抽出）`;
+  const rows=[...POOL].sort((a,b)=>b.d.localeCompare(a.d));
+  document.getElementById("ledger").innerHTML=rows.map(x=>`<tr><td class="n">${x.d}</td><td><a href="${x.u}" target="_blank" rel="noopener">${x.f}</a></td><td class="n">${x.c}</td><td>${x.st}</td></tr>`).join("");
+})();
+load(); render();
+</script>
+
+</body>
+</html>

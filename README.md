@@ -4,5 +4,6 @@
 
 公開ページ: https://kanameshiga-dev.github.io/
 
-- `index.html` 1 ファイルで完結しています（外部のスクリプトやスタイルは読み込みません）。
+- ポートフォリオの `index.html` は外部のスクリプトやスタイルを読み込みません。
+- [情報漏洩ビンゴ 2026秋](https://kanameshiga-dev.github.io/leak-bingo/) は `leak-bingo/` にあります。
 - `.nojekyll` は、GitHub Pages の Jekyll 変換を使わないためのファイルです。
