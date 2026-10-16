@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>情報漏洩ビンゴ 2026秋</title>
-<meta name="description" content="2026年9〜10月に国内で公表された情報漏洩39件から24社を引く、タップで判を押せるビンゴカード。">
-<meta property="og:title" content="情報漏洩ビンゴ 2026秋">
-<meta property="og:description" content="使ったことのあるサービスに印を。揃ったら、パスワードと登録カードを見直す合図。">
+<title>情報漏洩ビンゴ 2026夏〜秋</title>
+<meta name="description" content="2026年6〜10月に国内で公表された主な情報漏洩・漏洩のおそれの事案から24件を引くビンゴカード。2026年10月16日更新。">
+<meta property="og:title" content="情報漏洩ビンゴ 2026夏〜秋">
+<meta property="og:description" content="使ったことのあるサービスに印を。漏えい確認とおそれを分けて、各社の公表内容を確認できます。">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#EDF0F3" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#10151C" media="(prefers-color-scheme: dark)">
@@ -100,9 +100,9 @@ footer a{color:var(--muted)}
 <body>
 <div class="wrap">
   <header>
-    <div class="eyebrow">PUBLISHED 2026.09.01 — 10.09 / 国内公表分</div>
-    <h1>情報漏洩ビンゴ<small>2026秋</small></h1>
-    <p class="lead">使ったことのあるサービスに印を。揃ったら、パスワードと登録カードを見直す合図です。件数は各社公表の上限値で、「漏えいのおそれ」を含みます。</p>
+    <div class="eyebrow">PUBLISHED 2026.06.01 — 10.16 / 国内公表の主な事案</div>
+    <h1>情報漏洩ビンゴ<small>2026夏〜秋</small></h1>
+    <p class="lead">使ったことのあるサービスに印を。各社の公表内容で対象かを確認しましょう。収録事案は網羅的ではなく、件数は人数・レコード数・上限値が混在します。「漏えい確認」と「おそれ」を区別しています。</p>
   </header>
 
   <section class="card" aria-label="ビンゴカード">
@@ -131,8 +131,8 @@ footer a{color:var(--muted)}
   </details>
 
   <footer>
-    <span>集計出典：<a href="https://rocket-boys.co.jp/security-measures-lab/2026-sep-oct-japan-data-breach-exposure-scale/" target="_blank" rel="noopener">セキュリティ対策Lab（2026年9〜10月 国内案件集計）</a>ほか各社公表資料。</span>
-    <span>規模は公表値の上限。漏えい確定とおそれが混在し、全件流出を意味しません。</span>
+    <span>出典：各項目のリンク先にある公表資料など。既存の9〜10月分は<a href="https://rocket-boys.co.jp/security-measures-lab/2026-sep-oct-japan-data-breach-exposure-scale/" target="_blank" rel="noopener">セキュリティ対策Labの集計</a>も参照。</span>
+    <span>最終更新：2026年10月16日。規模は単位や確度が異なり、全件流出を意味しません。漏えいが否定された事案と別種の事案は新しいカードから除外します。</span>
   </footer>
 </div>
 
@@ -149,8 +149,8 @@ const POOL=[
  {s:"ローソン",f:"ローソンID／ローソンアプリ予約",d:"10/08",c:"2,155,345件",n:2155345,ok:1,st:"漏えい確認",note:"ローソンIDの会員情報。",u:RB+"lawson_id_2155000_data_breach/"},
  {s:"バイトル",f:"ディップ「バイトル」「バイトルNEXT」",d:"10/09",c:"最大3,885,771件",n:3885771,ok:1,st:"一部流出確認（上限は可能性）",note:"求人サービスへの不正アクセス。",u:RB+"dip_baitoru_baitoru_next_unauthorized_access_20261009/"},
  {s:"ビューカード",f:"ビューカード",d:"10/09",c:"約403万件",n:4030000,ok:0,st:"閲覧・取得の可能性",note:"IDCFクラウドへの不正アクセスが波及。メールアドレス等。",u:RB+"idcf-cloud-outage-affected-services-2026/"},
- {s:"JR東日本",f:"JR東日本（えきねっと・大人の休日倶楽部）",d:"10/09",c:"約206万件",n:2060000,ok:0,st:"閲覧・取得の可能性",note:"IDCFクラウド経由。",u:RB+"idcf-cloud-outage-affected-services-2026/"},
- {s:"JR九州",f:"JR九州",d:"10/09",c:"最大約130万件",n:1300000,ok:0,st:"閲覧・取得の可能性",note:"IDCFクラウド経由。",u:RB+"idcf-cloud-outage-affected-services-2026/"},
+ {s:"JR東日本",f:"JR東日本（えきねっと・大人の休日倶楽部）",d:"10/15",c:"旧対象約206万件",n:2060000,ok:0,cleared:1,st:"漏えいなしと判断（10/15更新）",note:"メール配信事業者から、個人情報の漏えいはなかったとの報告を受けた。",u:"https://www.jreast.co.jp/press/2026/20261009_ho02.pdf"},
+ {s:"JR九州",f:"JR九州",d:"10/15",c:"旧対象約130万件",n:1300000,ok:0,cleared:1,st:"漏えいの事実は確認されず（10/15続報）",note:"IDCフロンティアの調査結果に基づく。",u:"https://www.jrkyushu.co.jp/news/__icsFiles/afieldfile/2026/10/15/202691015_mail_address_access.pdf"},
  {s:"MrMax",f:"MrMaxアプリ・オンラインストア",d:"10/06",c:"最大1,735,154人",n:1735154,ok:1,st:"一部流出確認（最大は全会員数）",note:"アプリとECへの不正アクセス。",u:"https://www.mrmax.co.jp/info/incident_20261006/"},
  {s:"手間いらず",f:"手間いらず「TEMAIRAZU」",d:"09/28",c:"最大約445万人",n:4450000,ok:0,st:"閲覧・取得の可能性",note:"ホテル予約管理。149の企業・施設に影響。",u:RB+"temairazu-incident-affected-hotels-list/"},
  {s:"さくらインターネット",f:"さくらインターネット（販売管理システム）",d:"09/10",c:"最大約136万アカウント",n:1360563,ok:0,st:"閲覧・取得の可能性",note:"調査第三報で規模を公表。",u:"https://www.sakura.ad.jp/corporate/information/newsreleases/2026/09/10/1968225692/"},
@@ -177,7 +177,15 @@ const POOL=[
  {s:"レゴランド",f:"レゴランド・ジャパン・ホテル",d:"09/25",c:"1,557予約",n:1557,ok:1,st:"予約者情報に不正アクセス",note:"",u:"https://www.legoland.jp/operation/news/news-release/news20260925/"},
  {s:"リゾートトラスト",f:"リゾートトラスト／ザ・カハラ横浜",d:"10/09",c:"約6.2万件",n:62000,ok:1,st:"漏えい確認",note:"",u:RB+"resorttrust-personal-information-leak-unauthorized-access/"},
  {s:"三井不動産",f:"三井不動産",d:"09/01",c:"約5.5万件",n:55000,ok:0,st:"漏えいの可能性",note:"",u:RB+"mitsui-fudosan-19000-36000-leak/"},
- {s:"ドコモ",f:"NTTドコモ（Amazonへの情報提供）",d:"09/16",c:"344,213回線",n:344213,ok:1,st:"同意なき第三者提供",note:"侵入ではなく、同意を得ずに提供した事案。",u:"https://www.itmedia.co.jp/news/article/2609/16/2000001538/"}
+ {s:"ドコモ",f:"NTTドコモ（Amazonへの情報提供）",d:"09/16",c:"344,213回線",n:344213,ok:0,exclude:1,st:"同意なき第三者提供（漏えい事案の抽選対象外）",note:"侵入ではなく、同意を得ずに提供した事案。",u:"https://www.itmedia.co.jp/news/article/2609/16/2000001538/"},
+ {s:"KDDI",f:"KDDI（ISP向けメール基盤）",d:"06/23",c:"12,231,954人",n:12231954,ok:1,st:"メールアドレスの漏えい確認",note:"7月6日続報、7月21日訂正値。うち7,616,173人のパスワードも対象。",u:"https://newsroom.kddi.com/news/assets/2026/kddi_nr_s-73_4619/kddi_nr_s-73_4619_pdf_01.pdf"},
+ {s:"アフラック",f:"アフラック生命保険",d:"06/30",c:"約440万人",n:4400000,ok:1,st:"顧客情報の漏えい確認",note:"7月31日調査結果。代理店約4万店分も対象。",u:"https://www.aflac.co.jp/static/corp/profile/news/2026/2026073100.pdf"},
+ {s:"アイネックス",f:"アイネックス（朝日放送グループ）",d:"08/24",c:"373件",n:373,ok:1,st:"メールアドレス漏えい確認",note:"7月1日初報。別途46件の個人情報に漏えいのおそれ。",u:"https://www.i-nex.jp/2026/08/24/security-incident-notice-2/"},
+ {s:"ショップサーブ",f:"Eストアー「ショップサーブ」",d:"10/16",c:"約2,335.6万人",n:23356000,ok:1,st:"外部送信による漏えい確認",note:"8月1日初報、10月16日最終報。対象者数の概数で、約209.7万人はカード情報の一部も対象。",u:"https://estore.jp/press/20261016/"},
+ {s:"GEX",f:"ジェックス",d:"08/19",c:"77,619件ほか",n:77619,ok:0,st:"閲覧可能、外部流出は未確認",note:"氏名・連絡先を含む77,619件のほか、氏名のみ1,360件。",u:"https://www.gex-fp.co.jp/news/20260819/"},
+ {s:"コロナ",f:"コロナ（施工情報クラウド）",d:"08/28",c:"最大35,000名",n:35000,ok:0,st:"漏えいの可能性",note:"顧客の氏名・住所や施工関連資料が対象。",u:"https://www.corona.co.jp/news/other/post-439.html"},
+ {s:"ソースネクスト",f:"ソースネクスト",d:"10/15",c:"対象22,519,960件",n:22519960,ok:1,st:"会員情報の外部流出を確認",note:"対象件数は流出可能性の範囲で、全項目が全員分流出した意味ではない。",u:"https://www.sourcenext.com/support/i/2026/1015_info/"},
+ {s:"ファンケル",f:"ファンケル・アテニア",d:"10/16",c:"計834,947件",n:834947,ok:1,st:"会員情報の漏えい確認",note:"ファンケル393,785件、アテニア441,162件の合計。人数ではない。",u:"https://www.fancl.jp/news/pdf/husei.pdf"}
 ];
 const FREE={free:true};
 const KEY="leak-bingo-v1";
@@ -185,7 +193,7 @@ let state={card:[],marks:[],sel:-1};
 
 function rng(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
 function deal(seed){
-  const r=rng(seed), idx=POOL.map((_,i)=>i);
+  const r=rng(seed), idx=POOL.map((x,i)=>x.cleared||x.exclude?-1:i).filter(i=>i>=0);
   for(let i=idx.length-1;i>0;i--){const j=Math.floor(r()*(i+1));[idx[i],idx[j]]=[idx[j],idx[i]]}
   const c=idx.slice(0,24); c.splice(12,0,-1); return c;
 }
@@ -199,7 +207,7 @@ const LINES=[];
 for(let i=0;i<5;i++){LINES.push([0,1,2,3,4].map(k=>i*5+k));LINES.push([0,1,2,3,4].map(k=>k*5+i))}
 LINES.push([0,6,12,18,24],[4,8,12,16,20]);
 const marked=p=>p===12||state.marks.includes(p);
-const maxLog=Math.log10(22180000);
+const maxLog=Math.log10(Math.max(...POOL.filter(x=>!x.cleared&&!x.exclude).map(x=>x.n)));
 
 function render(){
   const g=document.getElementById("grid"); g.innerHTML="";
@@ -228,7 +236,7 @@ function slip(){
   if(id===-1){el.innerHTML='<div class="meta">FREE</div><h2>お詫びとお知らせ</h2><p>漏えい公表文のお決まりの題名。最初から印が付いています。</p>';return}
   const x=POOL[id];
   el.innerHTML=`<div class="meta">2026/${x.d} 公表 ・ ${x.c}</div>
-    <h2>${x.f}<span class="pill ${x.ok?"ok":"maybe"}">${x.ok?"確認":"おそれ"}</span></h2>
+    <h2>${x.f}<span class="pill ${x.ok?"ok":"maybe"}">${x.exclude?"対象外":x.cleared?"続報":x.ok?"確認":"おそれ"}</span></h2>
     <p>${x.st}${x.note?"。"+x.note:""}</p>
     <a href="${x.u}" target="_blank" rel="noopener">公表・解説を開く</a>`;
 }
@@ -241,7 +249,7 @@ document.getElementById("deal").addEventListener("click",()=>{state.card=deal(Da
 document.getElementById("reset").addEventListener("click",()=>{state.marks=[];state.sel=-1;save();render()});
 
 (function ledger(){
-  document.getElementById("ledgerTitle").textContent=`収録リスト（${POOL.length}件・カードは毎回24件を抽出）`;
+  document.getElementById("ledgerTitle").textContent=`収録リスト（${POOL.length}件・抽選対象${POOL.filter(x=>!x.cleared&&!x.exclude).length}件から24件）`;
   const rows=[...POOL].sort((a,b)=>b.d.localeCompare(a.d));
   document.getElementById("ledger").innerHTML=rows.map(x=>`<tr><td class="n">${x.d}</td><td><a href="${x.u}" target="_blank" rel="noopener">${x.f}</a></td><td class="n">${x.c}</td><td>${x.st}</td></tr>`).join("");
 })();
